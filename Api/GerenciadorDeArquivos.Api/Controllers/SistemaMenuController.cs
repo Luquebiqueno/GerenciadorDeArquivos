@@ -1,5 +1,6 @@
 ﻿using GerenciadorDeArquivos.Domain.Interfaces.Application;
 using GerenciadorDeArquivos.Repository.Context;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
