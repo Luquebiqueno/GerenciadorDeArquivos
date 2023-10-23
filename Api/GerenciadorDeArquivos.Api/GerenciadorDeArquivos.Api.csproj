@@ -14,12 +14,14 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Controllers\" />
+    <ProjectReference Include="..\..\Application\GerenciadorDeArquivos.Application\GerenciadorDeArquivos.Application.csproj" />
+    <ProjectReference Include="..\..\Infrastructure\GerenciadorDeArquivos.Repository\GerenciadorDeArquivos.Repository.csproj" />
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Application\GerenciadorDeArquivos.Application\GerenciadorDeArquivos.Application.csproj" />
-    <ProjectReference Include="..\..\Infrastructure\GerenciadorDeArquivos.Repository\GerenciadorDeArquivos.Repository.csproj" />
+    <Reference Include="GerenciadorDeArquivos.Common">
+      <HintPath>..\..\Assemblies\GerenciadorDeArquivos.Common.dll</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

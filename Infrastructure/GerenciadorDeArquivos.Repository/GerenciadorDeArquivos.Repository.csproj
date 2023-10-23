@@ -15,4 +15,10 @@
     <ProjectReference Include="..\..\Domain\GerenciadorDeArquivos.Domain\GerenciadorDeArquivos.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Reference Include="GerenciadorDeArquivos.Common">
+      <HintPath>..\..\Assemblies\GerenciadorDeArquivos.Common.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
 </Project>

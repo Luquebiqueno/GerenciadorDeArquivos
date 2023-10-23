@@ -1,4 +1,4 @@
-﻿Use GeranciadorDeArquivos
+﻿Use GerenciadorDeArquivos
 
 
 If Object_Id('SistemaMenu') Is Null 

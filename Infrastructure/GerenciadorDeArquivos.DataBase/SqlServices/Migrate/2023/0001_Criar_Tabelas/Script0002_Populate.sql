@@ -1,4 +1,4 @@
-﻿Use GeranciadorDeArquivos
+﻿Use GerenciadorDeArquivos
 Go
 
 If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Dashboard' And ParentId Is Null) 
@@ -126,7 +126,7 @@ Begin
 	Select
 		 ParentId	= @ParentId
 		,Descricao	= 'Csv'
-		,Icone		= 'csv'
+		,Icone		= 'description'
 		,RouterLink	= 'csv'
 		,Ordem		= 3
 		,Ativo		= 1
