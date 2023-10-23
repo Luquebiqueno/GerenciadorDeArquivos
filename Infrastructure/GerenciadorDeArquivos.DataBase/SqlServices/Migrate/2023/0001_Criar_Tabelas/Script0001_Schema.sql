@@ -22,8 +22,7 @@ Begin
 	(
 		 UsuarioId				Int Identity(1,1) Primary Key
 		,Nome					Varchar(128)	Not Null
-		,[Login]				Varchar(128)	Not Null
-		,Email					Varchar(100)		Null 
+		,Email					Varchar(100)	Not Null Unique
 		,Telefone				Varchar(20)			Null
 		,Senha					Varchar(400)	Not Null
 		,DataCadastro			Datetime		Not	Null

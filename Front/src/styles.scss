@@ -33,11 +33,30 @@ $front-theme: mat.define-light-theme((
 // that you are using.
 @include mat.all-component-themes($front-theme);
 
+@include mat.form-field-density(-2);
+
 /* You can add global styles to this file, and also import other style files */
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Poppins', sans-serif;
+  font-family: Poppins, sans-serif;
+}
+
+table {
+  width: 100%;
+}
+
+html, body { height: 100%; }
+
+.error {
+  --mdc-snackbar-container-color: #f44336;
+  //--mat-mdc-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #ffffff;
+}
+.success {
+  --mdc-snackbar-container-color: #7cb342;
+  //--mat-mdc-snack-bar-button-color: #ffffff;
+  --mdc-snackbar-supporting-text-color: #ffffff;
 }

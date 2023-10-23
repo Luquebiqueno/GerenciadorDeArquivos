@@ -19,7 +19,7 @@ namespace GerenciadorDeArquivos.Repository.Context
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            //modelBuilder.ApplyConfiguration(new UsuarioMap());
+            modelBuilder.ApplyConfiguration(new UsuarioMap());
             modelBuilder.ApplyConfiguration(new SistemaMenuMap());
         }
     }
