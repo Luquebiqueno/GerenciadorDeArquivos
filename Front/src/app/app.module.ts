@@ -6,10 +6,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { NavModule } from './nav/nav.module';
 import { NotifierModule } from './modules/notifier/notifier.module';
 import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
-//import { MeuPerfilModule } from './modules/meu-perfil/meu-perfil.module';
-//import { ExcluirMinhaContaModule } from './modules/excluir-minha-conta/excluir-minha-conta.module';
-//import { AlterarSenhaModule } from './modules/alterar-senha/alterar-senha.module';
+import { MinhaContaModule } from './modules/minha-conta/minha-conta.module';
+import { ExcluirMinhaContaModule } from './modules/excluir-minha-conta/excluir-minha-conta.module';
+import { AlterarSenhaModule } from './modules/alterar-senha/alterar-senha.module';
 import { DashboardModule } from './modules/dashboard/dashboard.module';
+import { ArquivoModule } from './modules/arquivo/arquivo.module';
 
 import { AppComponent } from './app.component';
 import { JwtInterceptor } from './_helpers/jwt.interceptor';
@@ -26,10 +27,11 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
         NavModule,
         NotifierModule,
         AutenticacaoModule,
-        //MeuPerfilModule,
-        //ExcluirMinhaContaModule,
-        //AlterarSenhaModule,
-        DashboardModule
+        MinhaContaModule,
+        ExcluirMinhaContaModule,
+        AlterarSenhaModule,
+        DashboardModule,
+        ArquivoModule
     ],
     providers: [
         {

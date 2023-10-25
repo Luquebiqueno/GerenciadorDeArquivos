@@ -35,9 +35,9 @@ Begin
 	)
 	Select
 		 ParentId	= Null
-		,Descricao	= 'Usuários'
+		,Descricao	= 'Minha Conta'
 		,Icone		= 'person'
-		,RouterLink	= 'usuarios'
+		,RouterLink	= 'minha-conta'
 		,Ordem		= 2
 		,Ativo		= 1
 End

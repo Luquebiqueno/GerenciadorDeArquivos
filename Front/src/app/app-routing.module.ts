@@ -5,6 +5,12 @@ import { EsqueciMinhaSenhaComponent } from './modules/autenticacao/esqueci-minha
 import { NavComponent } from './nav/nav/nav.component';
 import { authGuard } from './_helpers/auth.guard';
 import { DashboardComponent } from './modules/dashboard/dashboard/dashboard.component';
+import { ArquivoEditComponent } from './modules/arquivo/edit/arquivo-edit.component';
+import { ArquivoCsvComponent } from './modules/arquivo/list/csv/arquivo-csv.component';
+import { ArquivoImagemComponent } from './modules/arquivo/list/imagem/arquivo-imagem.component';
+import { ArquivoPdfComponent } from './modules/arquivo/list/pdf/arquivo-pdf.component';
+import { MinhaContaComponent } from './modules/minha-conta/minha-conta/minha-conta.component';
+import { AlterarSenhaComponent } from './modules/alterar-senha/alterar-senha/alterar-senha.component';
 
 const routes: Routes = [
     {
@@ -27,32 +33,42 @@ const routes: Routes = [
                 pathMatch: 'full',
                 component: DashboardComponent,
                 canActivate: [authGuard]
-            }/*,
+            },
             {
                 path: 'alterar-senha',
                 component: AlterarSenhaComponent,
                 canActivate: [authGuard]
             },
             {
-                path: 'meu-perfil',
-                component: MeuPerfilComponent,
+                path: 'minha-conta',
+                component: MinhaContaComponent,
                 canActivate: [authGuard]
             },
             {
-                path: 'gasto',
-                component: GastoListComponent,
+                path: 'imagem',
+                component: ArquivoImagemComponent,
                 canActivate: [authGuard]
             },
             {
-                path: 'gasto/create',
-                component: GastoEditComponent,
+                path: 'csv',
+                component: ArquivoCsvComponent,
                 canActivate: [authGuard]
             },
             {
-                path: 'gasto/edit/:id',
-                component: GastoEditComponent,
+                path: 'pdf',
+                component: ArquivoPdfComponent,
                 canActivate: [authGuard]
-            }*/
+            },
+            {
+                path: 'arquivo/create',
+                component: ArquivoEditComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path: 'arquivo/edit/:id',
+                component: ArquivoEditComponent,
+                canActivate: [authGuard]
+            }
         ]
     }
 ];

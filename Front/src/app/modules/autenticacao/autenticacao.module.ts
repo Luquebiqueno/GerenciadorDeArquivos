@@ -14,18 +14,18 @@ import { EsqueciMinhaSenhaComponent } from './esqueci-minha-senha/esqueci-minha-
 
 @NgModule({
 	declarations: [
-    AutenticacaoComponent,
-    LoginComponent,
-    CadastroComponent,
-    EsqueciMinhaSenhaComponent
-  ],
+		AutenticacaoComponent,
+		LoginComponent,
+		CadastroComponent,
+		EsqueciMinhaSenhaComponent
+	],
 	imports: [
 		CommonModule,
-        RouterModule,
-        MaterialModule,
-        ReactiveFormsModule,
-        FormsModule,
-        HttpClientModule
+		RouterModule,
+		MaterialModule,
+		ReactiveFormsModule,
+		FormsModule,
+		HttpClientModule
 	]
 })
 export class AutenticacaoModule { }
