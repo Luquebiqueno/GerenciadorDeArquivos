@@ -5,12 +5,14 @@ import { EsqueciMinhaSenhaComponent } from './modules/autenticacao/esqueci-minha
 import { NavComponent } from './nav/nav/nav.component';
 import { authGuard } from './_helpers/auth.guard';
 import { DashboardComponent } from './modules/dashboard/dashboard/dashboard.component';
-import { ArquivoEditComponent } from './modules/arquivo/edit/arquivo-edit.component';
 import { ArquivoCsvComponent } from './modules/arquivo/list/csv/arquivo-csv.component';
 import { ArquivoImagemComponent } from './modules/arquivo/list/imagem/arquivo-imagem.component';
 import { ArquivoPdfComponent } from './modules/arquivo/list/pdf/arquivo-pdf.component';
 import { MinhaContaComponent } from './modules/minha-conta/minha-conta/minha-conta.component';
 import { AlterarSenhaComponent } from './modules/alterar-senha/alterar-senha/alterar-senha.component';
+import { ArquivoCsvEditComponent } from './modules/arquivo/edit/csv/arquivo-csv-edit.component';
+import { ArquivoImagemEditComponent } from './modules/arquivo/edit/imagem/arquivo-imagem-edit.component';
+import { ArquivoPdfEditComponent } from './modules/arquivo/edit/pdf/arquivo-pdf-edit.component';
 
 const routes: Routes = [
     {
@@ -50,8 +52,28 @@ const routes: Routes = [
                 canActivate: [authGuard]
             },
             {
+                path: 'imagem/create',
+                component: ArquivoImagemEditComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path: 'imagem/edit/:id',
+                component: ArquivoImagemEditComponent,
+                canActivate: [authGuard]
+            },
+            {
                 path: 'csv',
                 component: ArquivoCsvComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path: 'csv/create',
+                component: ArquivoCsvEditComponent,
+                canActivate: [authGuard]
+            },
+            {
+                path: 'csv/edit/:id',
+                component: ArquivoCsvEditComponent,
                 canActivate: [authGuard]
             },
             {
@@ -60,13 +82,13 @@ const routes: Routes = [
                 canActivate: [authGuard]
             },
             {
-                path: 'arquivo/create',
-                component: ArquivoEditComponent,
+                path: 'pdf/create',
+                component: ArquivoPdfEditComponent,
                 canActivate: [authGuard]
             },
             {
-                path: 'arquivo/edit/:id',
-                component: ArquivoEditComponent,
+                path: 'pdf/edit/:id',
+                component: ArquivoPdfEditComponent,
                 canActivate: [authGuard]
             }
         ]

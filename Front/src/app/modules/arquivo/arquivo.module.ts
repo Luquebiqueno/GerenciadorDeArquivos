@@ -8,7 +8,10 @@ import { HttpClientModule } from '@angular/common/http';
 import { ArquivoCsvComponent } from './list/csv/arquivo-csv.component';
 import { ArquivoImagemComponent } from './list/imagem/arquivo-imagem.component';
 import { ArquivoPdfComponent } from './list/pdf/arquivo-pdf.component';
-import { ArquivoEditComponent } from './edit/arquivo-edit.component';
+import { ArquivoPdfEditComponent } from './edit/pdf/arquivo-pdf-edit.component';
+import { ArquivoCsvEditComponent } from './edit/csv/arquivo-csv-edit.component';
+import { ArquivoImagemEditComponent } from './edit/imagem/arquivo-imagem-edit.component';
+import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -16,7 +19,10 @@ import { ArquivoEditComponent } from './edit/arquivo-edit.component';
 		ArquivoCsvComponent,
 		ArquivoImagemComponent,
 		ArquivoPdfComponent,
-		ArquivoEditComponent
+		ArquivoPdfEditComponent,
+		ArquivoCsvEditComponent,
+		ArquivoImagemEditComponent,
+  		DialogComponent
 	],
 	imports: [
 		CommonModule,

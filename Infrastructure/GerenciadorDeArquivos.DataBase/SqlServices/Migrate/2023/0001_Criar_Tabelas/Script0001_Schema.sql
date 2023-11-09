@@ -44,16 +44,6 @@ Begin
 End
 Go
 
-If Object_Id('ArquivoStatus') Is Null 
-Begin
-	Create Table ArquivoStatus 
-	(
-		 ArquivoStatusId	Int Identity(1,1) Primary Key
-		,Descricao			Varchar(30) Not Null
-	)
-End
-Go
-
 If Object_Id('Arquivo') Is Null 
 Begin
 	Create Table Arquivo 
@@ -61,29 +51,12 @@ Begin
 		 ArquivoId			Int Identity(1,1) Primary Key
 		,Alias				Varchar(200)	Not Null
 		,Nome				Varchar(200)	Not Null
-		,ArquivoTipoId		Int				Not Null References ArquivoTipo		(ArquivoTipoId)
-		,ArquivoStatusId	Int				Not Null References ArquivoStatus	(ArquivoStatusId)
-		,Processado			Bit				Not Null
-		,DataProcessamento	DateTime			Null
+		,Caminho			Varchar(400)	Not Null
+		,ArquivoTipoId		Int				Not Null References ArquivoTipo (ArquivoTipoId)
 		,DataCadastro		DateTime		Not Null
 		,UsuarioCadastro	Int				Not	Null
 		,DataAlteracao		DateTime			Null
 		,UsuarioAlteracao	Int					Null
-		,Ativo				Bit				Not Null
-	)
-End
-Go
-
-If Object_Id('ArquivoItem') Is Null 
-Begin
-	Create Table ArquivoItem 
-	(
-		 ArquivoItemId		Int Identity(1,1) Primary Key
-		,Nome				Varchar(200)		Null
-		,Ocupacao			Varchar(100)		Null
-		,Sexo				Varchar(50)			Null
-		,ArquivoId			Int				Not Null References Arquivo (ArquivoId)
-		,DataCadastro		DateTime		Not Null
 		,Ativo				Bit				Not Null
 	)
 End

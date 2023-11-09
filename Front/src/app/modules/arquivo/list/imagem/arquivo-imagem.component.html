@@ -1,1 +1,88 @@
-<p>arquivo-imagem works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title>Imagens</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <mat-grid-list cols="4" rowHeight='100px' gutterSize="15px">
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Data Inicial</mat-label>
+                    <input id="dataInicial" [(ngModel)]="pesquisa.dataInicial" matInput [matDatepicker]="pickerInicial">
+                    <mat-datepicker-toggle matSuffix [for]="pickerInicial"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerInicial></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Data Final</mat-label>
+                    <input id="dataFinal" [(ngModel)]="pesquisa.dataFinal" matInput [matDatepicker]="pickerFinal">
+                    <mat-datepicker-toggle matSuffix [for]="pickerFinal"></mat-datepicker-toggle>
+                    <mat-datepicker #pickerFinal></mat-datepicker>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Nome</mat-label>
+                    <input type="text" id="nome" [(ngModel)]="pesquisa.nome" matInput>
+                </mat-form-field>
+            </mat-grid-tile>
+            <mat-grid-tile>
+                <mat-form-field appearance="outline">
+                    <mat-label>Alias</mat-label>
+                    <input type="text" id="alias" [(ngModel)]="pesquisa.alias" matInput>
+                </mat-form-field>
+            </mat-grid-tile>
+        </mat-grid-list>
+        <div class="div-btn">
+            <div>
+                <button mat-raised-button color="primary" (click)="getArquivo()">
+                    <mat-icon>search</mat-icon> Pesquisar
+                </button>
+                <button mat-raised-button class="btn-limpar" (click)="limpar()">Limpar</button>
+            </div>
+            <div>
+                <button mat-raised-button class="btn-cadastro" [routerLink]="['../imagem/create']">
+                    <mat-icon>add</mat-icon> Cadastrar
+                </button>
+            </div>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card class="list-card" *ngIf="!listar">
+    <mat-card-title>Não foram encontrados registros.</mat-card-title>
+</mat-card>
+
+<div class="mat-elevation-z8" *ngIf="listar">
+    <table mat-table [dataSource]="arquivos">
+        <ng-container matColumnDef="alias">
+            <th mat-header-cell *matHeaderCellDef> Alias </th>
+            <td mat-cell *matCellDef="let arquivo"> {{arquivo.alias}} </td>
+        </ng-container>
+        <ng-container matColumnDef="nome">
+            <th mat-header-cell *matHeaderCellDef> Nome </th>
+            <td mat-cell *matCellDef="let arquivo"> {{arquivo.nome}} </td>
+        </ng-container>
+        <ng-container matColumnDef="dataCadastro">
+            <th mat-header-cell *matHeaderCellDef> Data de Cadastro </th>
+            <td mat-cell *matCellDef="let arquivo"> {{arquivo.dataCadastro | date: 'dd/MM/yyyy'}} </td>
+        </ng-container>
+        <ng-container matColumnDef="acoes">
+            <th mat-header-cell *matHeaderCellDef> Ações </th>
+            <td mat-cell *matCellDef="let arquivo">
+                <button mat-icon-button matTooltip="Editar" class="btn-edit" aria-label="editar" [routerLink]="['../imagem/edit', arquivo.id]">
+                    <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button matTooltip="Excluir" class="btn-delete" aria-label="excluir" (click)="openDialogDeleteArquivo(arquivo.id)">
+                    <mat-icon>delete</mat-icon>
+                </button>
+            </td>
+        </ng-container>
+    
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-divider></mat-divider>
+    <mat-paginator [length]="qtdItens" [pageSize]="5" [showFirstLastButtons]="true" [pageIndex]="pagina" [hidePageSize]="true" (page)="handlePageEvent($event)">
+    </mat-paginator>
+</div>

@@ -21,38 +21,40 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { MatStepperModule } from '@angular/material/stepper';
 
 const materialComponent = [
-  LayoutModule,
-  MatToolbarModule,
-  MatButtonModule,
-  MatSidenavModule,
-  MatIconModule,
-  MatListModule,
-  MatMenuModule,
-  MatTableModule,
-  MatFormFieldModule,
-  MatSnackBarModule,
-  MatInputModule,
-  MatPaginatorModule,
-  MatSortModule,
-  MatCardModule,
-  MatTooltipModule,
-  MatSelectModule,
-  MatDatepickerModule,
-  MatNativeDateModule,
-  MatDialogModule,
-  MatGridListModule,
-  MatCheckboxModule,
-  MatExpansionModule
+	LayoutModule,
+	MatToolbarModule,
+	MatButtonModule,
+	MatSidenavModule,
+	MatIconModule,
+	MatListModule,
+	MatMenuModule,
+	MatTableModule,
+	MatFormFieldModule,
+	MatSnackBarModule,
+	MatInputModule,
+	MatPaginatorModule,
+	MatSortModule,
+	MatCardModule,
+	MatTooltipModule,
+	MatSelectModule,
+	MatDatepickerModule,
+	MatNativeDateModule,
+	MatDialogModule,
+	MatGridListModule,
+	MatCheckboxModule,
+	MatExpansionModule,
+	MatStepperModule
 ];
 
 @NgModule({
-  imports: [
-    materialComponent
-  ],
-  exports: [
-    materialComponent
-  ]
+	imports: [
+		materialComponent
+	],
+	exports: [
+		materialComponent
+	]
 })
 export class MaterialModule { }

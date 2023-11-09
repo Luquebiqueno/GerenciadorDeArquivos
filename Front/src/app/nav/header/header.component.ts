@@ -21,10 +21,6 @@ export class HeaderComponent implements OnInit {
         this.router.navigate(['autenticacao']);
     }
 
-    alterarSenha(): void {
-        this.router.navigate(['alterar-senha']);
-    }
-
     excluirConta(): void {
         this.dialog.open(ExcluirMinhaContaComponent);
     }

@@ -22,27 +22,6 @@ Begin
 End
 Go
 
-If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Usuários' And ParentId Is Null) 
-Begin
-	Insert Into SistemaMenu
-	(
-		 ParentId
-		,Descricao
-		,Icone
-		,RouterLink
-		,Ordem
-		,Ativo
-	)
-	Select
-		 ParentId	= Null
-		,Descricao	= 'Minha Conta'
-		,Icone		= 'person'
-		,RouterLink	= 'minha-conta'
-		,Ordem		= 2
-		,Ativo		= 1
-End
-Go
-
 If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Arquivos' And ParentId Is Null) 
 Begin
 	Insert Into SistemaMenu
@@ -133,6 +112,73 @@ Begin
 End
 Go
 
+If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Configurações' And ParentId Is Null) 
+Begin
+	Insert Into SistemaMenu
+	(
+		 ParentId
+		,Descricao
+		,Icone
+		,RouterLink
+		,Ordem
+		,Ativo
+	)
+	Select
+		 ParentId	= Null
+		,Descricao	= 'Configurações'
+		,Icone		= 'settings'
+		,RouterLink	= Null
+		,Ordem		= 4
+		,Ativo		= 1
+End
+Go
+
+If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Minha Conta' And 
+				ParentId In (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Configurações')) 
+Begin
+	Declare @ParentId Int = (Select Top 1 SistemaMenuId From SistemaMenu (Nolock) Where Descricao = 'Configurações')
+	Insert Into SistemaMenu
+	(
+		 ParentId
+		,Descricao
+		,Icone
+		,RouterLink
+		,Ordem
+		,Ativo
+	)
+	Select
+		 ParentId	= @ParentId
+		,Descricao	= 'Minha Conta'
+		,Icone		= 'person'
+		,RouterLink	= 'minha-conta'
+		,Ordem		= 1
+		,Ativo		= 1
+End
+Go
+
+If Not Exists (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Alterar Senha' And 
+				ParentId In (Select 1 From SistemaMenu (Nolock) Where Descricao = 'Configurações')) 
+Begin
+	Declare @ParentId Int = (Select Top 1 SistemaMenuId From SistemaMenu (Nolock) Where Descricao = 'Configurações')
+	Insert Into SistemaMenu
+	(
+		 ParentId
+		,Descricao
+		,Icone
+		,RouterLink
+		,Ordem
+		,Ativo
+	)
+	Select
+		 ParentId	= @ParentId
+		,Descricao	= 'Alterar Senha'
+		,Icone		= 'lock'
+		,RouterLink	= 'alterar-senha'
+		,Ordem		= 2
+		,Ativo		= 1
+End
+Go
+
 If Not Exists (Select Top 1 1 From ArquivoTipo (Nolock)) 
 Begin
 	Insert Into ArquivoTipo
@@ -143,18 +189,5 @@ Begin
 	 ('Imagem')
 	,('Pdf')
 	,('Csv')
-End
-Go
-
-If Not Exists (Select Top 1 1 From ArquivoStatus (Nolock)) 
-Begin
-	Insert Into ArquivoStatus
-	(
-		Descricao
-	)
-	Values
-	 ('Processado')
-	,('Aguardando Processamento')
-	,('Erro ao Processar')
 End
 Go
