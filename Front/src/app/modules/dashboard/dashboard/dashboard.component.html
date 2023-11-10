@@ -1,1 +1,80 @@
-<p>dashboard works!</p>
+<mat-card>
+    <mat-card-header>
+        <mat-card-title class="titulo">Dashboard</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form">
+        <mat-card-content>
+            <mat-grid-list cols="3" rowHeight='100px' gutterSize="15px">
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data Inicial</mat-label>
+                        <input formControlName="dataInicial" id="dataInicial" matInput [matDatepicker]="pickerInicial">
+                        <mat-datepicker-toggle matSuffix [for]="pickerInicial"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerInicial></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile>
+                    <mat-form-field appearance="outline">
+                        <mat-label>Data Final</mat-label>
+                        <input formControlName="dataFinal" id="dataFinal" matInput [matDatepicker]="pickerFinal">
+                        <mat-datepicker-toggle matSuffix [for]="pickerFinal"></mat-datepicker-toggle>
+                        <mat-datepicker #pickerFinal></mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+            </mat-grid-list>
+            <div>
+                <button mat-raised-button color="primary" (click)="getDashboard()">
+                    <mat-icon>search</mat-icon> Pesquisar
+                </button>
+                <button mat-raised-button class="btn-limpar" (click)="limpar()">Limpar</button>
+            </div>
+        </mat-card-content>
+    </form>
+</mat-card>
+<mat-grid-list class="card-grafico" cols="4" rowHeight='150px' gutterSize="15px">
+    <mat-grid-tile>
+        <mat-card class="cards">
+            <div class="content-cads">
+                <div class="titulo">Total Arquivos</div>
+                <div class="valor">
+                    {{totalArquivos}}
+                </div>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="cards">
+            <div class="content-cads">
+                <div class="titulo">Total Imagens</div>
+                <div class="valor">
+                    {{totalImagem}}
+                </div>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="cards">
+            <div class="content-cads">
+                <div class="titulo">Total Pdf</div>
+                <div class="valor">
+                    {{totalPdf}}
+                </div>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+    <mat-grid-tile>
+        <mat-card class="cards">
+            <div class="content-cads">
+                <div class="titulo">Total Csv</div>
+                <div class="valor">
+                    {{totalCsv}}
+                </div>
+            </div>
+        </mat-card>
+    </mat-grid-tile>
+</mat-grid-list>
+<mat-card class="card-grafico">
+    <mat-card-content class="dashboard-card-content">
+        <div id="chartdiv" style="height: 450px;"></div>
+    </mat-card-content>
+</mat-card>

@@ -10,6 +10,7 @@
   },
   "private": true,
   "dependencies": {
+    "@amcharts/amcharts5": "^5.5.5",
     "@angular/animations": "^16.1.0",
     "@angular/cdk": "^16.1.6",
     "@angular/common": "^16.1.0",

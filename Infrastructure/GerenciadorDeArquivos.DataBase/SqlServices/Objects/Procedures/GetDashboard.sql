@@ -1,4 +1,4 @@
-﻿Use ControleFinanceiro
+﻿Use GerenciadorDeArquivos
 Go
 
 If Object_Id('GetDashboard') Is Not Null
@@ -21,32 +21,33 @@ Create Procedure GetDashboard
 )
 As
 Begin
-	Drop Table If Exists #Gastos
-	Drop Table If Exists #GastosRetorno
+	Drop Table If Exists #Arquivos
+	Drop Table If Exists #ArquivosRetorno
 
-	Create Table #GastosRetorno
+	Create Table #ArquivosRetorno
 	(
-		 Id				Int Identity(1,1)
-		,Mes			Varchar(20)
-		,GastoFixo		Decimal(12,4)
-		,GastoVariavel	Decimal(12,4)
+		 Id		Int Identity(1,1)
+		,Mes	Varchar(20)
+		,Imagem	Int
+		,Pdf	Int
+		,Csv	Int
 	)
 	
 	Select 
-		 DataCompra		= Format(DataCompra, 'MMM/yyyy', 'pt-BR') 
-		,Valor			= Sum(Valor)
-		,GastoTipoId	= GastoTipoId
-	Into #Gastos
-	From Gasto (Nolock)
+		 DataCadastro	= Format(DataCadastro, 'MMM/yyyy', 'pt-BR') 
+		,Qtd			= Count(ArquivoId)
+		,ArquivoTipoId	= ArquivoTipoId
+	Into #Arquivos
+	From Arquivo (Nolock)
 	Where Ativo = 1
 	And UsuarioCadastro = @UsuarioId
-	And DataCompra Between @DataInicial And @DataFinal
-	Group By Format(DataCompra, 'MMM/yyyy', 'pt-BR'), GastoTipoId
-	Order By DataCompra
+	And DataCadastro Between @DataInicial And @DataFinal
+	Group By Format(DataCadastro, 'MMM/yyyy', 'pt-BR'), ArquivoTipoId
+	Order By DataCadastro
 	
 	While (@DataInicial <= @DataFinal)
 	Begin
-		Insert Into #GastosRetorno
+		Insert Into #ArquivosRetorno
 		(
 			Mes
 		)
@@ -55,23 +56,30 @@ Begin
 		Set @DataInicial = DateAdd(mm, 1, @DataInicial)
 	End
 	
-	Update Gr
-	Set Gr.GastoFixo = Ga.Valor
-	From #GastosRetorno Gr
-	Inner Join #Gastos Ga On Trim(Ga.DataCompra) = Trim(Gr.Mes)
-	Where Ga.GastoTipoId = 1
-	
-	Update Gr
-	Set Gr.GastoVariavel = Ga.Valor
-	From #GastosRetorno Gr
-	Inner Join #Gastos Ga On Trim(Ga.DataCompra) = Trim(Gr.Mes)
-	Where Ga.GastoTipoId = 2
+	Update Ar
+	Set Ar.Imagem = Aq.Qtd
+	From		#ArquivosRetorno	Ar
+	Inner Join	#Arquivos			Aq On Trim(Aq.DataCadastro) = Trim(Ar.Mes)
+	Where Aq.ArquivoTipoId = 1
+
+	Update Ar
+	Set Ar.Pdf = Aq.Qtd
+	From		#ArquivosRetorno	Ar
+	Inner Join	#Arquivos			Aq On Trim(Aq.DataCadastro) = Trim(Ar.Mes)
+	Where Aq.ArquivoTipoId = 2
+
+	Update Ar
+	Set Ar.Csv = Aq.Qtd
+	From		#ArquivosRetorno	Ar
+	Inner Join	#Arquivos			Aq On Trim(Aq.DataCadastro) = Trim(Ar.Mes)
+	Where Aq.ArquivoTipoId = 3
 	
 	Select
-		 Mes			= Mes			
-		,GastoFixo		= IsNull(GastoFixo, 0)		
-		,GastoVariavel	= IsNull(GastoVariavel, 0)	
-	From #GastosRetorno
+		 Mes	= Mes			
+		,Imagem	= IsNull(Imagem, 0)		
+		,Pdf	= IsNull(Pdf, 0)	
+		,Csv	= IsNull(Csv, 0)
+	From #ArquivosRetorno
 	Order By Id
 End	
 Go
