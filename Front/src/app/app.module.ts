@@ -5,6 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { NavModule } from './nav/nav.module';
 import { NotifierModule } from './modules/notifier/notifier.module';
+import { DialogModule } from './modules/dialog/dialog.module';
 import { AutenticacaoModule } from './modules/autenticacao/autenticacao.module';
 import { MinhaContaModule } from './modules/minha-conta/minha-conta.module';
 import { ExcluirMinhaContaModule } from './modules/excluir-minha-conta/excluir-minha-conta.module';
@@ -26,6 +27,7 @@ import { JwtInterceptor } from './_helpers/jwt.interceptor';
         HttpClientModule,
         NavModule,
         NotifierModule,
+        DialogModule,
         AutenticacaoModule,
         MinhaContaModule,
         ExcluirMinhaContaModule,

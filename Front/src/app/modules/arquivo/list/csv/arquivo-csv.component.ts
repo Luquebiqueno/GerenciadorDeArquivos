@@ -5,6 +5,7 @@ import { PageEvent } from '@angular/material/paginator';
 import { ArquivoService } from 'src/app/services/arquivo.service';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { DialogComponent } from '../../dialog/dialog.component';
+import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
 	selector: 'app-arquivo-csv',
@@ -26,8 +27,8 @@ export class ArquivoCsvComponent {
     }
 
     constructor(private arquivoService: ArquivoService,
-                private dialog: MatDialog,
                 private notifierService: NotifierService,
+                private dialogService: DialogService,
                 @Inject(LOCALE_ID) public locale: string) { }
 
     ngOnInit(): void {
@@ -60,12 +61,34 @@ export class ArquivoCsvComponent {
             this.qtdItens = response.qtdItens;
             if (this.arquivos.length > 0) {
                 this.listar = true;
+            } else {
+                this.listar = false;
             }
         });
     }
 
-	openDialogDeleteArquivo(id:number) {
-        this.dialog.open(DialogComponent, {data: {id: id}});
+	openDialogDeleteArquivo(id: number) {
+
+        this.dialogService.confirmDialog({
+            title: 'Deseja realmente excluir este item?',
+            message: '',
+            confirmText: 'Excluir',
+            cancelText: 'Fechar'
+        }).subscribe((response: any) => {
+            if (response) {
+                this.deleteArquivo(id);
+            }
+        });
+    }
+
+    deleteArquivo(id: number) {
+        this.arquivoService.deleteArquivo(id.toString()).subscribe((response: any) => {
+            this.getArquivo();
+            this.notifierService.showNotification('Arquivo excluído com sucesso', 'Sucesso', 'success');
+        },
+        error => {
+            this.notifierService.showNotification('Aconteceu um erro', 'Erro', 'error');
+        });
     }
 
 	limpar() {
