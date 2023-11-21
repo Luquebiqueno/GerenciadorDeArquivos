@@ -1,10 +1,9 @@
 import { formatDate } from '@angular/common';
-import { Component, Inject, LOCALE_ID } from '@angular/core';
+import { Component, Inject, LOCALE_ID, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { ArquivoService } from 'src/app/services/arquivo.service';
 import { NotifierService } from 'src/app/services/notifier.service';
-import { DialogComponent } from '../../dialog/dialog.component';
 import { DialogService } from 'src/app/services/dialog.service';
 
 @Component({
@@ -12,7 +11,7 @@ import { DialogService } from 'src/app/services/dialog.service';
 	templateUrl: './arquivo-csv.component.html',
 	styleUrls: ['./arquivo-csv.component.scss']
 })
-export class ArquivoCsvComponent {
+export class ArquivoCsvComponent implements OnInit {
 	arquivos: any = [];
 	listar: boolean = false;
     pagina = 0;

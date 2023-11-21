@@ -19,8 +19,8 @@
                     </mat-grid-list>
                     <div class="div-btn">
                         <button mat-raised-button class="btn-voltar" (click)="voltar()">Fechar</button>
-                        <button mat-raised-button color="primary" *ngIf="!isEdit" matStepperNext>Próximo</button>
-                        <button mat-button class="btn-salvar" *ngIf="isEdit" (click)="salvar()">Salvar</button>
+                        <button mat-raised-button color="primary" [disabled]="arquivoPdfForm.invalid" *ngIf="!isEdit" matStepperNext>Próximo</button>
+                        <button mat-button class="btn-salvar" [disabled]="arquivoPdfForm.invalid" *ngIf="isEdit" (click)="salvar()">Salvar</button>
                     </div>
                 </mat-card-content>
             </form>
@@ -31,7 +31,7 @@
                     <div class="div-arquivo-texto" *ngIf="fileName != null && fileName.length > 0">
                         {{fileName}}
                     </div>
-                    <input type="file" (change)="getFile($event)" #fileInput class="file">
+                    <input type="file" accept=".pdf" (change)="getFile($event)" #fileInput class="file">
                     <div class="div-arquivo-btn">
                         <button type="button" mat-raised-button color="primary" (click)="fileInput.click()">
                             <mat-icon>attach_file</mat-icon>

@@ -11,7 +11,6 @@ import { ArquivoPdfComponent } from './list/pdf/arquivo-pdf.component';
 import { ArquivoPdfEditComponent } from './edit/pdf/arquivo-pdf-edit.component';
 import { ArquivoCsvEditComponent } from './edit/csv/arquivo-csv-edit.component';
 import { ArquivoImagemEditComponent } from './edit/imagem/arquivo-imagem-edit.component';
-import { DialogComponent } from './dialog/dialog.component';
 
 
 @NgModule({
@@ -21,8 +20,7 @@ import { DialogComponent } from './dialog/dialog.component';
 		ArquivoPdfComponent,
 		ArquivoPdfEditComponent,
 		ArquivoCsvEditComponent,
-		ArquivoImagemEditComponent,
-  		DialogComponent
+		ArquivoImagemEditComponent
 	],
 	imports: [
 		CommonModule,
