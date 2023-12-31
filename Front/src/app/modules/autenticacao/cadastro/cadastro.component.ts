@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { CustomErrorStateMatcher } from 'src/app/_utils/custom-error-state-matcher';
+import { PasswordStrengthValidator } from 'src/app/_utils/password-strength.validators';
 import { Usuario } from 'src/app/models/usuario';
 import { NotifierService } from 'src/app/services/notifier.service';
 import { UsuarioService } from 'src/app/services/usuario.service';
@@ -30,7 +31,7 @@ export class CadastroComponent {
         this.form = this.fb.group({
             nome: ['', [Validators.required]],
             email: ['', [Validators.required, Validators.email]],
-            senha: ['', [Validators.required, Validators.minLength(8)]],
+            senha: ['', [Validators.required, PasswordStrengthValidator]],
             telefone: [''],
             confirmarSenha: ['']
         }, { validator: this.checkPasswords });
